@@ -1,0 +1,17 @@
+elasticsearch_version: "1.4.4"
+elasticsearch_bind_host: "localhost"
+elasticsearch_tcp_port: "9300"
+elasticsearch_http_port: "9200"
+elasticsearch_cors_enable: "false"
+elasticsearch_cors_allow_origin: "*"
+kibana_version: "4.0.1"
+kibana_os: "linux"
+kibana_arch: "x64"
+kibana_dir: "/opt"
+kibana_host: "localhost"
+kibana_port: "5601"
+kibana_elasticsearch: "http://localhost:9200"
+kibana_log: /var/log/kibana.log
+kibana_log_rotate_count: 5
+kibana_log_rotate_interval: daily
+logstash_version: "1.4.2-1-2c0f5a1"

@@ -1,0 +1,17 @@
+input { stdin { }
+	file {
+    		path => "/tmp/localhost_access_log.*"
+		type => "access_log"
+  	}
+ }
+
+filter {
+  grok {
+    match => [ "message", "%{COMMONAPACHELOG} %{BASE10NUM:request_duration}"]
+  }
+}
+
+output {
+  elasticsearch { host => localhost }
+  stdout { codec => rubydebug }
+}

@@ -1,0 +1,9 @@
+---
+
+- include : java8-install.yml
+- include : elastic-install.yml
+- include : nginx-install.yml
+- include : kibana-install.yml
+- include : logstash-install.yml 
+- include : elasticdump-install.yml
+#- include : logstashforwarder-server-install.yml

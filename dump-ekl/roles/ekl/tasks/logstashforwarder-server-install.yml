@@ -1,0 +1,21 @@
+
+- name: Ensure SSL certificates have the correct directories
+  file: path=/etc/pki/tls/{{item}} owner=root group=root mode=0755 state=directory
+  with_items:
+    - certs
+    - private
+
+#- name: copy ssl conf
+- template: src=openssl.cnf.j2 dest=/etc/ssl/openssl.cnf owner=root group=root mode=0644
+ 
+- name: Generate self-signed SSL certificate
+  command: sudo openssl req -config /etc/ssl/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
+  args:
+   chdir: /etc/pki/tls
+
+#- name: copy crt to logstash forwarder client
+#  command: scp -i /tmp/key.pem /etc/pki/tls/certs/logstash-forwarder.crt stack@ip:/tmp
+
+- name: restart logstash
+  service: name=logstash enabled=yes state=restarted
+

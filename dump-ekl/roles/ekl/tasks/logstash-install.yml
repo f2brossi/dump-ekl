@@ -1,0 +1,32 @@
+- name: Configure the Logsstash APT repositories
+  apt_repository: repo="deb http://packages.elasticsearch.org/logstash/1.4/debian stable main"
+                  state=present
+
+- name: Install Logstash
+  apt: pkg=logstash={{ logstash_version }} state=present update_cache=yes
+
+- name: Adjust init.d permissions
+  lineinfile: dest=/etc/init.d/logstash regexp="^LS_USER=" line="LS_USER=root" state=present backup=yes
+
+- name: Adjust init.d permissions
+  lineinfile: dest=/etc/init.d/logstash regexp="^LS_GROUP=" line="LS_GROUP=root" state=present backup=yes
+
+- name: Create Logstash input configuration
+  template: src=logstash_accesslog.conf.j2 dest="/etc/logstash/conf.d/logstash_accesslog.conf" owner=root group=root mode=0644
+
+- name: copy access_log for demo
+  copy: src=localhost_access_log.05052015.txt dest=/tmp/localhost_access_log.05052015.txt owner=stack mode=644
+
+- name: start logstart
+  service: name=logstash enabled=yes state=started
+
+- name: wait copy
+  pause: minutes=1
+
+#- name: copy access_log for demo
+#  copy: src=localhost_access_log.05052015.txt dest=/tmp/localhost_access_log.05052015.txt owner=stack mode=644
+
+- name: copy access_log in tmp
+  command: cp /tmp/localhost_access_log.05052015.txt /tmp/localhost_access_log.05052015bis.txt
+  sudo_user: stack
+ 

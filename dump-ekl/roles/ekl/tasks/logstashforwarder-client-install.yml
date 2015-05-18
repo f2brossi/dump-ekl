@@ -1,0 +1,24 @@
+- name: Configure ElasticSearch APT key
+  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+
+- name: Configure the Logstash forwarder APT repositories
+  apt_repository: repo="deb http://packages.elasticsearch.org/logstashforwarder/debian stable main"
+                  state=present
+
+- name: Install Logstashforwarder
+  apt: pkg=logstash-forwarder state=present
+
+- name: Ensure SSL certificates have the correct directories
+  file: path=/etc/pki/tls/{{item}} owner=root group=root mode=0755 state=directory
+  with_items:
+    - certs
+
+- name: copy crts to pki location
+  command: sudo cp /tmp/logstash-forwarder.crt /etc/pki/tls/certs/
+
+- name: copy logstash-forwarder.conf
+  copy: src=logstash-forwarder.conf.j2 dest=/etc/logstash-forwarder.conf 
+
+- name: restart logstashforwarder
+  service: name=logstash-forwarder enabled=yes state=restarted
+

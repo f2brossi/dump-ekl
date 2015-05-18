@@ -1,0 +1,28 @@
+- name: Download Kibana
+  get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz validate_certs=no
+           dest=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
+
+- name: Extract and install Kibana
+  unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.tar.gz
+             dest={{ kibana_dir }}
+             copy=no
+
+- name: Configure Kibana
+  template: src=kibana.yml.j2
+            dest={{ kibana_dir }}/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}/config/kibana.yml
+
+- name: Touch log file if it does not exist
+  command: touch {{ kibana_log }}
+           creates={{ kibana_log }}
+
+- name: Set log file permissions
+  file: path={{ kibana_log }} owner=stack group=stack mode=0644
+
+- name: Configure Kibana log rotation
+  template: src=logrotate_kibana.j2 dest=/etc/logrotate.d/kibana
+
+- name: Add Kibana init.d daemon script
+  template: src=kibana.init.d.j2 dest=/etc/init.d/kibana mode=0755
+
+- name: Ensure Kibana is started
+  action: service name=kibana enabled=yes state=started

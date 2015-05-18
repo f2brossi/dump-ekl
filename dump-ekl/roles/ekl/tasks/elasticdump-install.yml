@@ -1,0 +1,15 @@
+- name: Add apt repository 
+  apt_repository: repo='ppa:chris-lea/node.js' state=present update_cache=yes
+
+- name: Install node and npm via apt
+  apt: pkg=nodejs state=present
+
+- name: Install elasticdump locally
+  npm: name=elasticdump path=/home/stack
+
+- file: src=/usr/bin/nodejs dest=/usr/bin/node owner=root group=root state=link
+
+#- name: Import visualization and dashboard
+- copy: src=kibana-exported.json dest=/home/stack/kibana-exported.json
+  notify: start elasticdump
+

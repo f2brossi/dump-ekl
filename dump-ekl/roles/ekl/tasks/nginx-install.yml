@@ -1,0 +1,13 @@
+- name: Ensure htpasswd-related utilities are installed (Debian).
+  apt: "pkg={{ item }} state=present"
+  with_items:
+    - apache2-utils
+    - nginx
+    - python-passlib
+
+- name: Enable default Vhost
+  template: src=nginx-default.j2 dest=/etc/nginx/sites-available/default
+
+- name: Create htpasswd User
+  htpasswd: path=/etc/nginx/htpasswd.users name=kibanaadmin password=kibana owner=root group=root mode=0644
+  notify: restart nginx

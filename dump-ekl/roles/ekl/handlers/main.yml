@@ -1,0 +1,17 @@
+---
+# For more information about handlers see:
+# http://www.ansibleworks.com/docs/playbooks.html#handlers-running-operations-on-change
+- name: Restart Kibana
+  service: name=kibana state=restarted
+
+- name: Restart ElasticSearch
+  service: name=elasticsearch state=restarted
+
+- name: Restart Logstash
+  service: name=logstash state=restarted
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: start elasticdump
+  command: /home/stack/node_modules/elasticdump/bin/elasticdump --input=/home/stack/kibana-exported.json --output=http://localhost:9200/.kibana --type=data 
