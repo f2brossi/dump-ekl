@@ -9,6 +9,10 @@ filter {
   grok {
     match => [ "message", "%{COMMONAPACHELOG} %{BASE10NUM:request_duration}"]
   }
+  mutate {
+        convert => [ "request_duration", "float" ]
+  }
+
 }
 
 output {
