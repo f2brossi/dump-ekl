@@ -14,5 +14,4 @@ kibana_elasticsearch: "http://localhost:9200"
 kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
-logstash_version: "1.4.2-1-2c0f5a1"
-#logstash_version: "1.5"
+fqdnOrPublicIp: 

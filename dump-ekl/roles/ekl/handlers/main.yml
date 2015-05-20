@@ -13,5 +13,8 @@
 - name: restart nginx
   service: name=nginx state=restarted
 
+- name: reload nginx
+  service: name=nginx state=reloaded
+
 - name: start elasticdump
   command: /home/stack/node_modules/elasticdump/bin/elasticdump --input=/home/stack/kibana-exported.json --output=http://localhost:9200/.kibana --type=data 

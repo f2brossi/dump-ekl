@@ -11,3 +11,11 @@
 - name: Create htpasswd User
   htpasswd: path=/etc/nginx/htpasswd.users name=kibanaadmin password=kibana owner=root group=root mode=0644
   notify: restart nginx
+
+- name: Ensure SSL certificates have the correct directories
+  file: path=/etc/nginx/ssl owner=root group=root mode=0755 state=directory
+
+- name: create self-signed SSL cert
+  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Ile-de-France/L=Paris/O=IT/CN={{ fqdnOrPublicIp }}" -days 3650 -keyout /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.crt -extensions v3_ca creates=/etc/nginx/ssl/server.crt
+  notify: reload nginx
+
