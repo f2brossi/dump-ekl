@@ -11,8 +11,11 @@
 - name: Adjust init.d permissions
   lineinfile: dest=/etc/init.d/logstash regexp="^LS_GROUP=" line="LS_GROUP=root" state=present backup=yes
 
+#- name: Create Logstash input configuration
+#  template: src=logstash_accesslog.conf.j2 dest="/etc/logstash/conf.d/logstash_access_log.conf" owner=root group=root mode=0644
+
 - name: Create Logstash input configuration
-  template: src=logstash_accesslog.conf.j2 dest="/etc/logstash/conf.d/logstash_access_log.conf" owner=root group=root mode=0644
+  template: src=logstash_lumberjack.conf.j2 dest="/etc/logstash/conf.d/logstash_lumberjack.conf" owner=root group=root mode=0644
 
 - name: copy access_log for demo
   copy: src=localhost_access_log.05052015.txt dest=/tmp/localhost_access_log.05052015.txt owner=stack mode=644

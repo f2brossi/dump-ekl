@@ -17,7 +17,7 @@
   command: sudo cp /tmp/logstash-forwarder.crt /etc/pki/tls/certs/
 
 - name: copy logstash-forwarder.conf
-  copy: src=logstash-forwarder.conf.j2 dest=/etc/logstash-forwarder.conf 
+  template: src=logstash-forwarder.conf.j2 dest=/etc/logstash-forwarder.conf 
 
 - name: restart logstashforwarder
   service: name=logstash-forwarder enabled=yes state=restarted

@@ -6,7 +6,7 @@ input {
 
 	lumberjack {
     		port => 5000
-    		type => "access_log"
+    		type => "syslog"
     		ssl_certificate => "/etc/pki/tls/certs/logstash-forwarder.crt"
     		ssl_key => "/etc/pki/tls/private/logstash-forwarder.key"
   	}

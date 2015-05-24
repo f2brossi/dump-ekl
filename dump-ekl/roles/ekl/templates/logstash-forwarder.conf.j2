@@ -6,7 +6,7 @@
     # the selected one appears to be dead or unresponsive
     #"servers": [ "localhost:5043" ],
 
-    "servers": [ "{{ logstash-server-ip }}:5000" ],
+    "servers": [ "{{ ansible_eth0.ipv4.address }}:5000" ],
     "timeout": 15,
     "ssl ca": "/etc/pki/tls/certs/logstash-forwarder.crt"
 

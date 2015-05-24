@@ -6,4 +6,5 @@
 - include : kibana-install.yml
 - include : logstash-install.yml 
 - include : elasticdump-install.yml
-#- include : logstashforwarder-server-install.yml
+- include : logstashforwarder-server-install.yml
+- include : logstashforwarder-client-install.yml
