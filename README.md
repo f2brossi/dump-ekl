@@ -2,7 +2,7 @@
 Provision ekl and restore your dashboard using Ansible, Elasticdump, Nginx and Vagrant OpenStack cloud provider. 
 
 #### Ansible Playbook to automate the setup of an ELK stack 
-Centralized logging server with Logstash + logstash-forwarder, Elasticsearch, Kibana 4 behind nginx securized with https and simple authentication.
+Centralized logging server with Logstash + logstash-forwarder, Elasticsearch, Kibana 4 behind Nginx with https and simple authentication.
 
 This playbook is intended to be run against a vm that will be used as a central logger.
 After the setup of the server, clients need to be configured to redirect all logs to the central location.
@@ -38,9 +38,9 @@ Under what the Playbook will do:
 
 5. Setup and configure Logstash
 
-6. Setup and configure Elasticdump ( import/ export your visualizations and dashboards )
+6. Setup and configure Elasticdump ( import/ export your visualizations and dashboards - see below )
 
-7. Setup and configure logstash-forwarder for real time logging.
+7. Setup and configure logstash-forwarder for real time logging. Client and server on same vm.
 
 ### Why Elasticdump ?
 
