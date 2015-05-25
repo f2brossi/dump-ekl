@@ -46,7 +46,7 @@ Under what the Playbook will do:
 
 Because Kibana 4, for now, does not allow you to save and load JSON visualizations and dashboard via its interface.
 
-Export your visualizations/dashboard with the following command:
+Export your visualizations/dashboards with the following command:
 
 ```console
 elasticdump \  
@@ -55,6 +55,7 @@ elasticdump \
     --type=data \
     --searchBody='{"filter": { "or": [ {"type": {"value": "dashboard"}}, {"type" : {"value":"visualization"}}] }}' \
     > kibana-exported.json
-    ```
+```
+
     
-[Elasticdump import/ export] (http://air.ghost.io/kibana-4-export-and-import-visualizations-and-dashboards/)
+[Elasticdump import/export] (http://air.ghost.io/kibana-4-export-and-import-visualizations-and-dashboards/)
