@@ -2,9 +2,9 @@
 Provision ekl and restore your dashboard using Ansible, Elasticdump, Nginx and Vagrant OpenStack cloud provider. 
 
 #### Ansible Playbook to automate the setup of an ELK stack 
-(centralized logging server with Logstash + logstash-forwarder, Elasticsearch, Kibana 4 behind nginx securized with https and simple authentication )
+Centralized logging server with Logstash + logstash-forwarder, Elasticsearch, Kibana 4 behind nginx securized with https and simple authentication.
 
-This playbook is intended to be run against a clean server that will be used as a central logger.
+This playbook is intended to be run against a vm that will be used as a central logger.
 After the setup of the server, clients need to be configured to redirect all logs to the central location.
 
 **Platform**: Tested on **Ubuntu **
@@ -38,6 +38,23 @@ Under what the Playbook will do:
 
 5. Setup and configure Logstash
 
-6. Setup and configure Elasticdump ( import/ export your visualizations and dashboard )
+6. Setup and configure Elasticdump ( import/ export your visualizations and dashboards )
 
 7. Setup and configure logstash-forwarder for real time logging.
+
+### Why Elasticdump ?
+
+Because Kibana 4, for now, does not allow you to save and load JSON visualizations and dashboard via its interface.
+
+Export your visualizations/dashboard with the following command:
+
+```console
+elasticdump \  
+    --input=http://localhost:9200/.kibana  \
+    --output=$ \
+    --type=data \
+    --searchBody='{"filter": { "or": [ {"type": {"value": "dashboard"}}, {"type" : {"value":"visualization"}}] }}' \
+    > kibana-exported.json
+    ```
+    
+[Elasticdump import/ export] (http://air.ghost.io/kibana-4-export-and-import-visualizations-and-dashboards/)
