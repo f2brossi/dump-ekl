@@ -32,7 +32,11 @@ filter {
    mutate {
      convert => [ "request_duration", "float" ]
    }
-
+   if [clientip] =~ /172\.22\.08\.25/ {
+     mutate {
+      add_field => [ "hostname", "horizon" ]
+     }
+   }
   }
 }
 
