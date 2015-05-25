@@ -16,17 +16,17 @@ After the setup of the server, clients need to be configured to redirect all log
 
 1. Install Ansible and [Vagrant Cloud Provider](https://github.com/ggiamarchi/vagrant-openstack-provider). 
 
-2. Set in your .bashrc all the Openstack variables OS_USERNAME, OS_PASSWORD, OS_TENANT, OS_FLOATING_IP etc.. used within the Vagrantfile
+2. Set your .bashrc with the needed Openstack variables OS_USERNAME, OS_PASSWORD, OS_TENANT, OS_FLOATING_IP etc.. used within the Vagrantfile.
 
 ### Quick Start
 
-$`./deploy.sh  (set the ip address of your vm and execute vagrant up --provider=openstack)
+$`./deploy.sh  (set the ip address of the vm and then execute vagrant up )
 
 Take a coffee and after three minutes get your centralized logging server up and running!
 
 Browse **https://@IPOrFqdn** and enter your login/mdp (see nginx-install.yml )!
 
-Under what the Playbook will do:
+Hereunder is what the Playbook will do:
 
 1. Setup java8
 
@@ -56,6 +56,5 @@ elasticdump \
     --searchBody='{"filter": { "or": [ {"type": {"value": "dashboard"}}, {"type" : {"value":"visualization"}}] }}' \
     > kibana-exported.json
 ```
-
     
 [Elasticdump import/export] (http://air.ghost.io/kibana-4-export-and-import-visualizations-and-dashboards/)
