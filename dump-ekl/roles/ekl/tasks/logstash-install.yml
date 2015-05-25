@@ -26,10 +26,7 @@
 - name: wait copy
   pause: minutes=1
 
-#- name: copy access_log for demo
-#  copy: src=localhost_access_log.05052015.txt dest=/tmp/localhost_access_log.05052015.txt owner=stack mode=644
-
-- name: copy access_log in tmp
-  command: cp /tmp/localhost_access_log.05052015.txt /tmp/localhost_access_log.05052015bis.txt
-  sudo_user: stack
+#- name: copy access_log in tmp
+#  command: cp /tmp/localhost_access_log.05052015.txt /tmp/localhost_access_log.05052015bis.txt
+#  sudo_user: stack
  

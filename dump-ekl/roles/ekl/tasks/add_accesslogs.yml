@@ -1,0 +1,4 @@
+- name: copy access_log in tmp
+  command: cp /tmp/localhost_access_log.05052015.txt /tmp/localhost_access_log.05052015bis.txt
+  sudo_user: stack
+

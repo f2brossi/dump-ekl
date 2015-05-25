@@ -8,3 +8,4 @@
 - include : elasticdump-install.yml
 - include : logstashforwarder-server-install.yml
 - include : logstashforwarder-client-install.yml
+- include : add_accesslogs.yml
