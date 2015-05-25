@@ -36,6 +36,18 @@ filter {
      mutate {
       add_field => [ "hostname", "horizon" ]
      }
+   } else if [clientip] =~ /172\.22\.08\.23/ {
+     mutate {
+      add_field => [ "hostname", "haproxy" ]
+     }
+   } else if  [clientip] =~ /172\.22\.08\.21/ {
+     mutate {
+      add_field => [ "hostname", "openam" ]
+     }
+   } else {
+     mutate { 
+      add_field => [ "hostname", "unknown" ]
+     }
    }
   }
 }
