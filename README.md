@@ -14,9 +14,9 @@ After the setup of the server, clients need to be configured to redirect all log
 
 ### Preparation
 
-1. Install Ansible and [Vagrant Cloud Provider](https://github.com/ggiamarchi/vagrant-openstack-provider). 
+1. Install Ansible and [Vagrant Openstack Provider](https://github.com/ggiamarchi/vagrant-openstack-provider). 
 
-2. Set your .bashrc with the needed Openstack variables OS_USERNAME, OS_PASSWORD, OS_TENANT, OS_FLOATING_IP etc.. used within the Vagrantfile.
+2. Set your .bashrc with the needed Openstcack variables OS_USERNAME, OS_PASSWORD, OS_TENANT, OS_FLOATING_IP etc.. used within the Vagrantfile.
 
 ### Quick Start
 
