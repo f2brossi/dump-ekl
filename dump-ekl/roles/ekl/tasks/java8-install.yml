@@ -1,5 +1,5 @@
 - name: ensure required packages are installed for Java8
-  apt: name=$item state=latest update_cache=yes
+  apt: name={{ item }} state=latest update_cache=yes
   with_items:
     - python-software-properties
  
