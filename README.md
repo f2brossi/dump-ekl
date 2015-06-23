@@ -39,7 +39,7 @@ Hereunder is what the Playbook will do:
 
 5. Setup and configure Logstash
 
-6. Setup and configure Elasticdump ( import/ export your visualizations and dashboards - see below)
+6. Setup and configure Elasticdump : import/ export your visualizations and dashboards - see below.
 
 7. Setup and configure logstash-forwarder for real time logging. Client and server on same vm.
 
